@@ -1,0 +1,4 @@
+Props - Passing a prop to a component is just like Passing an argument to a function.
+
+Config Driven UI - 
+
