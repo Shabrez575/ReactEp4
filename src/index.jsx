@@ -37,41 +37,118 @@ const Header = () => {
 };
 
 // -Restaurant Card
-
-// Inline Styling
-// const styleCard = {
-//   backgroundColor: "#fofofo",
-//   border: "1px solid black",
-//   width: "150px",
-//   height:"200px",
-// };
-
-// We can pass data like this
-
-// Pass Props - In 2nd Part
-// const RestaurantCard = (props) => {
-// We can pass data like this
-// const RestaurantCard = ({ resName, cuisine, rating, del_time }) => {
 const RestaurantCard = (props) => {
   // using destructure
-  const {resName, cuisine, rating, del_time} = props;
+  const {resData} = props;
   return (
     <div className="res-card">
-      <img className="res-food" alt="food-img" src="images.jfif" />
-      {/*  Inline Styling */}
-      {/* <div className="res-card"  style={styleCard}> */}
-      {/* <h3>{props.resName}</h3> */}
-      <h3>{resName}</h3>
-      <p>{cuisine}</p>
+      <img className="res-food" alt="food-img" 
+        src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + 
+        resData.info.cloudinaryImageId }
+        />
+      <h3>{resData.info.name}</h3>
+      <p><b>{resData.info.cuisines.join(",")}</b></p>
       <span>
-        <b>{rating}</b>
+        <b>avgrating:{resData.info.avgRating}</b>
       </span>
       <span className="card-btm">
-        <b>{del_time}</b>
+        <b>{resData.info.totalRatingsString}</b>
       </span>
+       <p><b>{resData.info.costForTwo}</b></p>
+    
     </div>
   );
 };
+// restaurantCard
+
+const restObj =    {
+      "info": {
+          "id": "146397",
+          "name": "Sreeraj Lassi Bar 1973S",
+          "cloudinaryImageId": "b2d97facadf6b5a4e4f97e0124269768",
+          "locality": "Shantinagar",
+          "areaName": "Shantinagar",
+          "costForTwo": "₹250 for two",
+          "cuisines": [
+              "Desserts",
+              "Juices",
+              "Ice Cream Cakes",
+              "Snacks"
+          ],
+          "avgRating": 4.5,
+          "veg": true,
+          "parentId": "418125",
+          "avgRatingString": "4.5",
+          "totalRatingsString": "1K+",
+          "promoted": true,
+          "adTrackingId": "cid=15182532~p=5~adgrpid=15182532#ag1~mp=SWIGGY_IN~bl=FOOD~aet=RESTAURANT~aeid=146397~eid=d408450e-a0d9-4e9c-bf9f-fed3984a68b4~srvts=1720632058600~collid=45995",
+          "sla": {
+              "deliveryTime": 22,
+              "lastMileTravel": 2.6,
+              "serviceability": "SERVICEABLE",
+              "slaString": "20-25 mins",
+              "lastMileTravelString": "2.6 km",
+              "iconType": "ICON_TYPE_EMPTY"
+          },
+          "availability": {
+              "nextCloseTime": "2024-07-10 23:30:00",
+              "opened": true
+          },
+          "badges": {
+              "textExtendedBadges": [
+                  {
+                      "iconId": "guiltfree/GF_Logo_android_3x",
+                      "shortDescription": "options available",
+                      "fontColor": "#7E808C"
+                  }
+              ]
+          },
+          "isOpen": true,
+          "aggregatedDiscountInfoV2": {},
+          "type": "F",
+          "badgesV2": {
+              "entityBadges": {
+                  "textBased": {},
+                  "imageBased": {},
+                  "textExtendedBadges": {
+                      "badgeObject": [
+                          {
+                              "attributes": {
+                                  "iconId": "guiltfree/GF_Logo_android_3x",
+                                  "description": "",
+                                  "shortDescription": "options available",
+                                  "fontColor": "#7E808C"
+                              }
+                          }
+                      ]
+                  }
+              }
+          },
+          "differentiatedUi": {
+              "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+              "differentiatedUiMediaDetails": {
+                  "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+                  "lottie": {},
+                  "video": {}
+              }
+          },
+          "reviewsSummary": {},
+          "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+          "restaurantOfferPresentationInfo": {},
+          "externalRatings": {
+              "aggregatedRating": {
+                  "rating": "--"
+              }
+          },
+          "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+      },
+      "analytics": {},
+      "cta": {
+          "link": "swiggy://menu?restaurant_id=146397",
+          "text": "RESTAURANT_MENU",
+          "type": "DEEPLINK"
+      }
+  };
 
 // Body/Main component
 const Body = () => {
@@ -80,40 +157,22 @@ const Body = () => {
       <div className="Search-bar">Search-bar</div>
       <div className="res-Container">
         <RestaurantCard
-          resName="Street Food"
-          cuisine="Biryani Dum Hyderabadi"
-          rating="4.5"
-          del_time="36 minute"
+          resData = {restObj}
         />
         <RestaurantCard
-          resName="Food Bazar"
-          cuisine="Chiken Korma"
-          rating="4.4"
-          del_time="40 minute"
+          resData = {restObj}
         />
         <RestaurantCard
-          resName="Biryani House"
-          cuisine="Mutton Korma with Pullow"
-          rating="4.2"
-          del_time="35 minute"
+          resData = {restObj}
         />
         <RestaurantCard
-          resName="Food Lover"
-          cuisine="Samosa with chatni"
-          rating="4.1"
-          del_time="32 minute"
+          resData = {restObj}
         />
         <RestaurantCard
-          resName="Food Mohalla"
-          cuisine="Chilli Paratha"
-          rating="4.8"
-          del_time="31 minute"
+          resData = {restObj}
         />
         <RestaurantCard
-          resName="KFC"
-          cuisine="Smoky grilled chicken"
-          rating="4.9"
-          del_time="30 minute"
+          resData = {restObj}
         />
       </div>
     </div>
