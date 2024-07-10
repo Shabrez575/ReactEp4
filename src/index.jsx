@@ -36,23 +36,6 @@ const Header = () => {
   );
 };
 
-// Body/Main component
-const Body = () => {
-  return (
-    <div className="body">
-      <div className="Search-bar">Search-bar</div>
-      <div className="res-Container">
-      <RestaurantCard />
-      <RestaurantCard />
-      <RestaurantCard />
-      <RestaurantCard />
-      <RestaurantCard />
-      <RestaurantCard /> 
-      </div>
-    </div>
-  );
-};
-
 // -Restaurant Card
 
 // Inline Styling
@@ -63,16 +46,76 @@ const Body = () => {
 //   height:"200px",
 // };
 
-const RestaurantCard = () => {
+// We can pass data like this
+
+// Pass Props - In 2nd Part
+// const RestaurantCard = (props) => {
+// We can pass data like this
+// const RestaurantCard = ({ resName, cuisine, rating, del_time }) => {
+const RestaurantCard = (props) => {
+  // using destructure
+  const {resName, cuisine, rating, del_time} = props;
   return (
     <div className="res-card">
-      <img className="res-food" alt="food-img" src="images.jfif"></img>
+      <img className="res-food" alt="food-img" src="images.jfif" />
       {/*  Inline Styling */}
       {/* <div className="res-card"  style={styleCard}> */}
-      <h3>Street Food</h3>
-      <p>Biryani Dum Hyderabadi</p>
-      <span><b>4.5 rating</b></span>     
-      <span className="card-btm"> <b>38 minute</b></span>
+      {/* <h3>{props.resName}</h3> */}
+      <h3>{resName}</h3>
+      <p>{cuisine}</p>
+      <span>
+        <b>{rating}</b>
+      </span>
+      <span className="card-btm">
+        <b>{del_time}</b>
+      </span>
+    </div>
+  );
+};
+
+// Body/Main component
+const Body = () => {
+  return (
+    <div className="body">
+      <div className="Search-bar">Search-bar</div>
+      <div className="res-Container">
+        <RestaurantCard
+          resName="Street Food"
+          cuisine="Biryani Dum Hyderabadi"
+          rating="4.5"
+          del_time="36 minute"
+        />
+        <RestaurantCard
+          resName="Food Bazar"
+          cuisine="Chiken Korma"
+          rating="4.4"
+          del_time="40 minute"
+        />
+        <RestaurantCard
+          resName="Biryani House"
+          cuisine="Mutton Korma with Pullow"
+          rating="4.2"
+          del_time="35 minute"
+        />
+        <RestaurantCard
+          resName="Food Lover"
+          cuisine="Samosa with chatni"
+          rating="4.1"
+          del_time="32 minute"
+        />
+        <RestaurantCard
+          resName="Food Mohalla"
+          cuisine="Chilli Paratha"
+          rating="4.8"
+          del_time="31 minute"
+        />
+        <RestaurantCard
+          resName="KFC"
+          cuisine="Smoky grilled chicken"
+          rating="4.9"
+          del_time="30 minute"
+        />
+      </div>
     </div>
   );
 };
